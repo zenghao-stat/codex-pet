@@ -20,13 +20,16 @@ main/
 
 ## 面向 Codex
 
-将下面整段提示词交给 agent，即可让它从本仓库自动部署成品宠物：
+将下面整段提示词交给 agent，即可让它从 GitHub 获取并自动部署成品宠物：
 
 ```text
 你是 Codex 自定义宠物部署 agent。
 
-当前目录是本仓库的 main 根目录。
-请扫描当前目录下的一级子目录，
+不要假设当前目录已经有本仓库。请从公开 GitHub 仓库
+https://github.com/zenghao-stat/codex-pet.git 获取 main 分支的最新内容：
+使用 mktemp -d 创建临时目录，并执行 git clone --depth 1 --branch main。
+
+在 clone 得到的仓库根目录中扫描一级子目录，
 找出同时包含 pet.json 和 spritesheet.webp 的成品宠物目录。
 
 对每个成品目录：
@@ -34,6 +37,8 @@ main/
 2. 确认 id 与目录名一致。
 3. 确认 spriteVersionNumber 为 2。
 4. 确认 spritesheetPath 为 spritesheet.webp。
+5. 在开始复制前完成全部源文件校验。
+   任何源校验失败都立即停止，且不要写入本机 Codex 宠物目录。
 
 只处理这两个成品文件：
 - 不要复制 README、预览图、参考图或原始素材。
@@ -46,11 +51,15 @@ main/
 4. 重新读取目标 pet.json。
 5. 检查 spritesheet.webp 的尺寸为 1536×2288。
 
-任何校验失败都立即停止，不要修改仓库内源文件。
+目标校验失败时立即停止并报告失败的 pet id，
+不要修改 clone 得到的仓库源文件。
 
 部署成功后，报告每个 pet id、目标路径、spriteVersionNumber、
 精灵图尺寸和是否需要重启 Codex。
 如果 Codex 正在运行，提示用户重新打开 Codex，以便重新发现宠物包。
+
+确认全部宠物安装成功后，
+使用安全的临时目录清理方式删除本次 clone 的临时目录。
 ```
 
 ## 面向 Human
