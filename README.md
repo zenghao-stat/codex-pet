@@ -8,6 +8,8 @@
 
 ```text
 main/
+├── .preview/
+│   └── lumei.png
 ├── README.md
 └── lumei/
     ├── pet.json
@@ -116,4 +118,4 @@ cp -p "$PET_ID/pet.json" "$PET_ID/spritesheet.webp" "$CODEX_PET_DIR/"
 
 ### 噜妹（`lumei`）
 
-[![噜妹精灵图](lumei/spritesheet.webp)](lumei/spritesheet.webp)
+[![噜妹单体预览](.preview/lumei.png)](lumei/spritesheet.webp)
