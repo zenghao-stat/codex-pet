@@ -2,21 +2,28 @@
 
 这是 Codex 自定义宠物成品仓库。
 
-当前宠物：`lumei`（显示名：噜妹）。每个宠物都放在自己的子目录中，目录名与 `pet.json` 的 `id` 一致。
+当前宠物：`aike` 与 `lumei`（显示名：噜妹）。
+每个宠物都放在自己的子目录中，目录名与 `pet.json` 的 `id` 一致。
 
 ## 目录结构
 
 ```text
 main/
 ├── .preview/
+│   ├── aike.png
 │   └── lumei.png
 ├── README.md
+├── aike/
+│   ├── pet.json
+│   └── spritesheet.webp
 └── lumei/
     ├── pet.json
     └── spritesheet.webp
 ```
 
-`lumei/spritesheet.webp` 是 Codex v2 成品精灵图，尺寸为 `1536×2288`，对应 8 列 × 11 行、每格 `192×208`。`lumei/pet.json` 中的 `spriteVersionNumber: 2` 不要删除或改成其他值。
+每个 `spritesheet.webp` 都是 Codex v2 成品精灵图，尺寸为 `1536×2288`，
+对应 8 列 × 11 行、每格 `192×208`。
+每个 `pet.json` 中的 `spriteVersionNumber: 2` 不要删除或改成其他值。
 
 ## 面向 Codex
 
@@ -75,7 +82,7 @@ https://github.com/zenghao-stat/codex-pet.git 获取 main 分支的最新内容�
 在本仓库的 `main` 目录执行：
 
 ```bash
-PET_ID="lumei"
+PET_ID="lumei" # 也可以改为 aike
 CODEX_PET_DIR="${CODEX_HOME:-$HOME/.codex}/pets/$PET_ID"
 
 mkdir -p "$CODEX_PET_DIR"
@@ -86,15 +93,15 @@ cp -p "$PET_ID/pet.json" "$PET_ID/spritesheet.webp" "$CODEX_PET_DIR/"
 
 ### 方式二：Finder 手动复制
 
-1. 打开本仓库的 `main/lumei/` 文件夹。
+1. 选择要安装的宠物目录：`main/aike/` 或 `main/lumei/`。
 2. 打开 Finder 的前往文件夹，输入 `~/.codex/pets/`。
-3. 如果没有 `lumei` 文件夹，就新建一个。
-4. 将 `main/lumei/` 中的 `pet.json` 和 `spritesheet.webp` 复制到 `~/.codex/pets/lumei/`。
+3. 新建与 pet id 同名的文件夹，例如 `aike` 或 `lumei`。
+4. 将所选目录中的 `pet.json` 和 `spritesheet.webp` 复制到对应的 pet id 文件夹。
 5. 重新打开 Codex。
 
 ### 验证是否安装成功
 
-确认以下两个文件都存在：
+确认所选 pet id 目录中的两个文件都存在，例如：
 
 ```text
 ~/.codex/pets/lumei/pet.json
@@ -112,9 +119,16 @@ cp -p "$PET_ID/pet.json" "$PET_ID/spritesheet.webp" "$CODEX_PET_DIR/"
 }
 ```
 
-如果 Codex 没有显示噜妹，先检查目录名是否为 `lumei`、两个文件是否在同一层，以及是否已经重启 Codex。
+如果 Codex 没有显示新宠物，先检查目录名是否与 `pet.json` 的 `id` 一致、
+两个文件是否在同一层，以及是否已经重启 Codex。
 
 ## 在线索引
+
+### aike（`aike`）
+
+[![aike 单体预览](.preview/aike.png)](aike/spritesheet.webp)
+
+安装包结构校验通过；该版本为用户批准的第一版，仍保留已知视觉 QA 问题。
 
 ### 噜妹（`lumei`）
 
