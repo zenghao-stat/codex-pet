@@ -4,8 +4,6 @@
 
 当前宠物：`lumei`（显示名：噜妹）。每个宠物都放在自己的子目录中，目录名与 `pet.json` 的 `id` 一致。
 
-在线索引：[打开宠物展示页](./index.html)
-
 ## 目录结构
 
 ```text
@@ -113,3 +111,9 @@ cp -p "$PET_ID/pet.json" "$PET_ID/spritesheet.webp" "$CODEX_PET_DIR/"
 ```
 
 如果 Codex 没有显示噜妹，先检查目录名是否为 `lumei`、两个文件是否在同一层，以及是否已经重启 Codex。
+
+## 在线索引
+
+### 噜妹（`lumei`）
+
+[![噜妹精灵图](lumei/spritesheet.webp)](lumei/spritesheet.webp)
