@@ -18,54 +18,11 @@ main/
 
 ## 面向 Codex
 
-### 安装约定
-
-Codex 的本地自定义宠物目录是：
+将下面整段提示词交给 agent，即可让它从本仓库自动部署成品宠物：
 
 ```text
-${CODEX_HOME:-$HOME/.codex}/pets/<pet-id>/
+你是 Codex 自定义宠物部署 agent。当前目录是本仓库的 main 根目录。请扫描当前目录下的一级子目录，找出同时包含 pet.json 和 spritesheet.webp 的成品宠物目录；对每个目录读取 pet.json 的 id，并确认 id 与目录名一致、spriteVersionNumber 为 2、spritesheetPath 为 spritesheet.webp。只处理这两个成品文件，不要复制 README、预览图、参考图、原始素材或 8×9 中间图。对每个通过检查的宠物，将文件复制到 ${CODEX_HOME:-$HOME/.codex}/pets/<id>/，先创建目标目录，再用保留文件属性的方式覆盖同名旧文件。复制后重新读取目标 pet.json，并检查 spritesheet.webp 的尺寸为 1536×2288；任何校验失败都立即停止，不要修改仓库内源文件。部署成功后报告每个 pet id、目标路径、spriteVersionNumber、精灵图尺寸和是否需要重启 Codex；如果 Codex 正在运行，提示用户重新打开 Codex 以重新发现宠物包。
 ```
-
-安装 `lumei` 时，必须将下面两个文件放在同一个目录中：
-
-```text
-${CODEX_HOME:-$HOME/.codex}/pets/lumei/pet.json
-${CODEX_HOME:-$HOME/.codex}/pets/lumei/spritesheet.webp
-```
-
-### 从本仓库安装
-
-在仓库根目录执行：
-
-```bash
-REPO_DIR="$(pwd)"
-PET_ID="lumei"
-CODEX_PET_DIR="${CODEX_HOME:-$HOME/.codex}/pets/$PET_ID"
-
-mkdir -p "$CODEX_PET_DIR"
-cp -p "$REPO_DIR/$PET_ID/pet.json" \
-  "$REPO_DIR/$PET_ID/spritesheet.webp" \
-  "$CODEX_PET_DIR/"
-```
-
-### 安装后检查
-
-```bash
-jq -e '.id == "lumei" and .spriteVersionNumber == 2 and .spritesheetPath == "spritesheet.webp"' \
-  "${CODEX_HOME:-$HOME/.codex}/pets/lumei/pet.json"
-
-sips -g pixelWidth -g pixelHeight \
-  "${CODEX_HOME:-$HOME/.codex}/pets/lumei/spritesheet.webp"
-```
-
-检查结果应为 `1536×2288`。如果 Codex 已经在运行，安装后重新打开 Codex，使其重新发现本地宠物包。
-
-### Codex 维护规则
-
-- 使用 `pet.json` 中的 `id` 作为宠物目录名；当前只有 `lumei`。
-- `pet.json` 和 `spritesheet.webp` 必须成对复制。
-- 只安装 `lumei/` 内的成品，不要把 README、预览图或中间生成文件复制到 Codex 宠物目录。
-- 不要把 8×9 中间图当作成品；v2 成品必须保留 `spriteVersionNumber: 2`。
 
 ## 面向 Human
 
