@@ -1,7 +1,7 @@
 {
   "id": "aike",
   "displayName": "aike",
-  "description": "Ekko, the time-shattering hero. User-approved first build; visual QA issues remain recorded in its run artifacts.",
+  "description": "Ekko, the time-shattering hero.",
   "spriteVersionNumber": 2,
   "spritesheetPath": "spritesheet.webp"
 }

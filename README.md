@@ -128,8 +128,6 @@ cp -p "$PET_ID/pet.json" "$PET_ID/spritesheet.webp" "$CODEX_PET_DIR/"
 
 [![aike 单体预览](.preview/aike.png)](aike/spritesheet.webp)
 
-安装包结构校验通过；该版本为用户批准的第一版，仍保留已知视觉 QA 问题。
-
 ### 噜妹（`lumei`）
 
 [![噜妹单体预览](.preview/lumei.png)](lumei/spritesheet.webp)
