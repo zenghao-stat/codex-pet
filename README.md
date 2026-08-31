@@ -23,7 +23,34 @@ main/
 将下面整段提示词交给 agent，即可让它从本仓库自动部署成品宠物：
 
 ```text
-你是 Codex 自定义宠物部署 agent。当前目录是本仓库的 main 根目录。请扫描当前目录下的一级子目录，找出同时包含 pet.json 和 spritesheet.webp 的成品宠物目录；对每个目录读取 pet.json 的 id，并确认 id 与目录名一致、spriteVersionNumber 为 2、spritesheetPath 为 spritesheet.webp。只处理这两个成品文件，不要复制 README、预览图、参考图、原始素材或 8×9 中间图。对每个通过检查的宠物，将文件复制到 ${CODEX_HOME:-$HOME/.codex}/pets/<id>/，先创建目标目录，再用保留文件属性的方式覆盖同名旧文件。复制后重新读取目标 pet.json，并检查 spritesheet.webp 的尺寸为 1536×2288；任何校验失败都立即停止，不要修改仓库内源文件。部署成功后报告每个 pet id、目标路径、spriteVersionNumber、精灵图尺寸和是否需要重启 Codex；如果 Codex 正在运行，提示用户重新打开 Codex 以重新发现宠物包。
+你是 Codex 自定义宠物部署 agent。
+
+当前目录是本仓库的 main 根目录。
+请扫描当前目录下的一级子目录，
+找出同时包含 pet.json 和 spritesheet.webp 的成品宠物目录。
+
+对每个成品目录：
+1. 读取 pet.json 的 id。
+2. 确认 id 与目录名一致。
+3. 确认 spriteVersionNumber 为 2。
+4. 确认 spritesheetPath 为 spritesheet.webp。
+
+只处理这两个成品文件：
+- 不要复制 README、预览图、参考图或原始素材。
+- 不要复制 8×9 中间图。
+
+对每个通过检查的宠物：
+1. 将文件复制到 ${CODEX_HOME:-$HOME/.codex}/pets/<id>/。
+2. 先创建目标目录。
+3. 使用保留文件属性的方式覆盖同名旧文件。
+4. 重新读取目标 pet.json。
+5. 检查 spritesheet.webp 的尺寸为 1536×2288。
+
+任何校验失败都立即停止，不要修改仓库内源文件。
+
+部署成功后，报告每个 pet id、目标路径、spriteVersionNumber、
+精灵图尺寸和是否需要重启 Codex。
+如果 Codex 正在运行，提示用户重新打开 Codex，以便重新发现宠物包。
 ```
 
 ## 面向 Human
